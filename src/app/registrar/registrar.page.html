@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro de usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="register-content">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <ion-item lines="none">
+      <ion-input formControlName="username" type="text" placeholder="Nombre de Usuario"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-input formControlName="email" type="email" placeholder="Correo Electrónico"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-input formControlName="password" type="password" placeholder="Contraseña"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-input formControlName="confirmPassword" type="password" placeholder="Confirmar Contraseña"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-input formControlName="age" type="number" placeholder="Edad"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-input formControlName="height" type="number" placeholder="Altura (cm)"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-input formControlName="weight" type="number" placeholder="Peso (kg)"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-select formControlName="gender" placeholder="Selecciona tu género">
+        <ion-select-option value="Masculino">Masculino</ion-select-option>
+        <ion-select-option value="Femenino">Femenino</ion-select-option>
+        <ion-select-option value="Otro">Otro</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-select formControlName="activityLevel" placeholder="Nivel de Actividad">
+        <ion-select-option value="Bajo">Bajo</ion-select-option>
+        <ion-select-option value="Moderado">Moderado</ion-select-option>
+        <ion-select-option value="Alto">Alto</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" class="register-button">Registrarse</ion-button>
+  </form>
+</ion-content>
