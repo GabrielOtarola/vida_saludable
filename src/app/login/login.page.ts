@@ -1,33 +1,48 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
+  loginForm: FormGroup;
 
-  credentials = {
-    email: '',
-    password: ''
-  };
-
-  constructor(private router: Router) { }
-
-  ngOnInit() { }
-
-  onLogin() {
-    const { email, password } = this.credentials;
-
-    // Aquí puedes agregar la lógica de autenticación, por ejemplo, llamando a un servicio
-    if (email === 'test@example.com' && password === '123456') {
-      // Si la autenticación es exitosa, navega a la página principal
-      this.router.navigateByUrl('/home', { replaceUrl: true });
-    } else {
-      // Si las credenciales no son válidas, muestra un mensaje de error
-      alert('Credenciales incorrectas');
-    }
+  constructor(
+    private fb: FormBuilder,
+    private navCtrl: NavController
+  ) {
+    this.loginForm = this.fb.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required, this.passwordValidator]]
+    });
   }
 
+  passwordValidator(control: any) {
+    const value = control.value;
+    const hasNumber = /\d/.test(value);
+    const hasUpper = /[A-Z]/.test(value);
+    const hasMinLength = value.length >= 7;
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(value);
+
+    if (!(hasNumber && hasUpper && hasMinLength && hasSpecialChar)) {
+      return { passwordStrength: true };
+    }
+    return null;
+  }
+
+  navigateToHome() {
+    this.navCtrl.navigateForward('/home', { animated: true, animationDirection: 'forward' });
+  }
+
+  onSubmit() {
+    if (this.loginForm.valid) {
+      console.log('Formulario válido:', this.loginForm.value);
+      this.navigateToHome();
+    } else {
+      console.log('Formulario inválido');
+    }
+  }
 }
