@@ -12,30 +12,57 @@
     <ion-item lines="none">
       <ion-input formControlName="username" type="text" placeholder="Nombre de Usuario"></ion-input>
     </ion-item>
+    <div *ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.touched || registerForm.get('username')?.dirty)">
+      <p *ngIf="registerForm.get('username')?.errors?.['required']" class="error-message">El nombre de usuario es requerido.</p>
+      <p *ngIf="registerForm.get('username')?.errors?.['pattern']" class="error-message">El nombre de usuario solo debe contener letras.</p>
+    </div>
 
     <ion-item lines="none">
       <ion-input formControlName="email" type="email" placeholder="Correo Electrónico"></ion-input>
     </ion-item>
+    <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)">
+      <p *ngIf="registerForm.get('email')?.errors?.['required']" class="error-message">El correo electrónico es requerido.</p>
+      <p *ngIf="registerForm.get('email')?.errors?.['email']" class="error-message">Introduce un correo electrónico válido.</p>
+    </div>
 
     <ion-item lines="none">
       <ion-input formControlName="password" type="password" placeholder="Contraseña"></ion-input>
     </ion-item>
+    <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)">
+      <p *ngIf="registerForm.get('password')?.errors?.['required']" class="error-message">La contraseña es requerida.</p>
+      <p *ngIf="registerForm.get('password')?.errors?.['invalidPassword']" class="error-message">La contraseña debe contener al menos 4 números, 3 letras y 1 mayúscula.</p>
+    </div>
 
     <ion-item lines="none">
       <ion-input formControlName="confirmPassword" type="password" placeholder="Confirmar Contraseña"></ion-input>
     </ion-item>
+    <div *ngIf="registerForm.hasError('mismatch') && (registerForm.get('confirmPassword')?.touched || registerForm.get('confirmPassword')?.dirty)">
+      <p class="error-message">Las contraseñas no coinciden.</p>
+    </div>
 
     <ion-item lines="none">
       <ion-input formControlName="age" type="number" placeholder="Edad"></ion-input>
     </ion-item>
+    <div *ngIf="registerForm.get('age')?.invalid && (registerForm.get('age')?.touched || registerForm.get('age')?.dirty)">
+      <p *ngIf="registerForm.get('age')?.errors?.['required']" class="error-message">La edad es requerida.</p>
+      <p *ngIf="registerForm.get('age')?.errors?.['pattern']" class="error-message">La edad debe ser un número.</p>
+    </div>
 
     <ion-item lines="none">
       <ion-input formControlName="height" type="number" placeholder="Altura (cm)"></ion-input>
     </ion-item>
+    <div *ngIf="registerForm.get('height')?.invalid && (registerForm.get('height')?.touched || registerForm.get('height')?.dirty)">
+      <p *ngIf="registerForm.get('height')?.errors?.['required']" class="error-message">La altura es requerida.</p>
+      <p *ngIf="registerForm.get('height')?.errors?.['pattern']" class="error-message">La altura debe ser un número.</p>
+    </div>
 
     <ion-item lines="none">
       <ion-input formControlName="weight" type="number" placeholder="Peso (kg)"></ion-input>
     </ion-item>
+    <div *ngIf="registerForm.get('weight')?.invalid && (registerForm.get('weight')?.touched || registerForm.get('weight')?.dirty)">
+      <p *ngIf="registerForm.get('weight')?.errors?.['required']" class="error-message">El peso es requerido.</p>
+      <p *ngIf="registerForm.get('weight')?.errors?.['pattern']" class="error-message">El peso debe ser un número.</p>
+    </div>
 
     <ion-item lines="none">
       <ion-select formControlName="gender" placeholder="Selecciona tu género">
@@ -44,6 +71,9 @@
         <ion-select-option value="Otro">Otro</ion-select-option>
       </ion-select>
     </ion-item>
+    <div *ngIf="registerForm.get('gender')?.invalid && (registerForm.get('gender')?.touched || registerForm.get('gender')?.dirty)">
+      <p class="error-message">Selecciona un género.</p>
+    </div>
 
     <ion-item lines="none">
       <ion-select formControlName="activityLevel" placeholder="Nivel de Actividad">
@@ -52,6 +82,9 @@
         <ion-select-option value="Alto">Alto</ion-select-option>
       </ion-select>
     </ion-item>
+    <div *ngIf="registerForm.get('activityLevel')?.invalid && (registerForm.get('activityLevel')?.touched || registerForm.get('activityLevel')?.dirty)">
+      <p class="error-message">Selecciona el nivel de actividad.</p>
+    </div>
 
     <ion-button expand="block" type="submit" class="register-button">Registrarse</ion-button>
   </form>

@@ -25,3 +25,25 @@
 #container a {
   text-decoration: none;
 }
+
+.home-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 16px; // Ajusta el padding según sea necesario
+}
+
+ion-menu {
+  --width: 280px; // Ajusta el ancho del menú según sea necesario
+}
+
+ion-menu h2 {
+  font-size: 18px;
+  color: #4a90e2; // Color del texto del mensaje de bienvenida
+  margin: 16px;
+}
+
+
+
+
