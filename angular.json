@@ -13,9 +13,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "scripts": [
-              "node_modules/jquery/dist/jquery.min.js"
-            ],
             "outputPath": "www",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -34,7 +31,10 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/global.scss", "src/theme/variables.scss"]
+            "styles": ["src/global.scss", "src/theme/variables.scss"],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -113,7 +113,10 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/global.scss", "src/theme/variables.scss"]
+            "styles": ["src/global.scss", "src/theme/variables.scss"],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js" 
+            ]
           },
           "configurations": {
             "ci": {
