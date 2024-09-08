@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +7,23 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  welcomeMessage: string | null = null;
+  welcomeMessage: string = '';
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.welcomeMessage = params['welcome'] ? `Bienvenido, ${params['welcome']}!` : null;
-    });
+    this.setWelcomeMessage();
+  }
+
+  setWelcomeMessage() {
+    const username = localStorage.getItem('username');
+    this.welcomeMessage = username ? `Bienvenido, ${username}` : 'Bienvenido';
+  }
+
+  logout() {
+    localStorage.removeItem('username');
+    this.router.navigate(['/login']);
   }
 }

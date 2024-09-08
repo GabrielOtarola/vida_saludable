@@ -16,31 +16,19 @@ export class LoginPage {
   ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
-      password: ['', [Validators.required, this.passwordValidator]]
+      password: ['', [Validators.required]]
     });
-  }
-
-  passwordValidator(control: any) {
-    const value = control.value;
-    const hasNumber = /\d/.test(value);
-    const hasUpper = /[A-Z]/.test(value);
-    const hasMinLength = value.length >= 7;
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(value);
-
-    if (!(hasNumber && hasUpper && hasMinLength && hasSpecialChar)) {
-      return { passwordStrength: true };
-    }
-    return null;
-  }
-
-  navigateToHome() {
-    this.navCtrl.navigateForward('/home', { animated: true, animationDirection: 'forward' });
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log('Formulario válido:', this.loginForm.value);
-      this.navigateToHome();
+      const { username } = this.loginForm.value;
+
+      // Aquí debes realizar la lógica de autenticación
+      // Supongamos que la autenticación es exitosa
+
+      localStorage.setItem('username', username); // Guardar el nombre de usuario en el almacenamiento local
+      this.navCtrl.navigateForward('/home');
     } else {
       console.log('Formulario inválido');
     }
