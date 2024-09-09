@@ -19,17 +19,23 @@
         </ion-label>
       </ion-item>
       <!-- Añade otros ítems de menú aquí -->
-      <ion-item routerLink="/profile">
+      <ion-item routerLink="/profile" *ngIf="isLoggedIn">
         <ion-icon slot="start" name="person"></ion-icon>
         <ion-label>Perfil</ion-label>
       </ion-item>
-      <ion-item routerLink="/settings">
+      <ion-item routerLink="/settings" *ngIf="isLoggedIn">
         <ion-icon slot="start" name="settings"></ion-icon>
         <ion-label>Configuraciones</ion-label>
       </ion-item>
-      <ion-item (click)="logout()">
+      <!-- Botón para cerrar sesión -->
+      <ion-item *ngIf="isLoggedIn" (click)="logout()">
         <ion-icon slot="start" name="log-out"></ion-icon>
         <ion-label>Cerrar sesión</ion-label>
+      </ion-item>
+      <!-- Botón para iniciar sesión -->
+      <ion-item *ngIf="!isLoggedIn" (click)="goToLogin()">
+        <ion-icon slot="start" name="log-in"></ion-icon>
+        <ion-label>Iniciar sesión</ion-label>
       </ion-item>
     </ion-list>
   </ion-content>
@@ -40,4 +46,3 @@
     <!-- Contenido adicional de la página de inicio -->
   </div>
 </ion-content>
-
