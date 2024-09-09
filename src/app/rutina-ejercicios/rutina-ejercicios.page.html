@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Rutina de Ejercicios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="routine-container">
+    <!-- Lista de rutinas -->
+    <div *ngIf="!ejercicioActual" class="rutina-list">
+      <h2>Selecciona una rutina</h2>
+      <ion-list>
+        <ion-item *ngFor="let rutina of rutinas" (click)="seleccionarRutina(rutina)">
+          <ion-label>{{ rutina.nombre }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+    
+    <!-- Detalle del ejercicio actual -->
+    <div *ngIf="ejercicioActual" class="rutina-detalle">
+      <h2>{{ ejercicioActual.nombre }}</h2>
+      <p>Tiempo restante: {{ tiempoRestante }} segundos</p>
+      <ion-progress-bar [value]="progreso"></ion-progress-bar>
+      <ion-button expand="full" (click)="iniciarRutina()" [disabled]="rutinaCompletada">Iniciar Rutina</ion-button>
+      <ion-button expand="full" (click)="detenerRutina()" [disabled]="!ejercicioActual || rutinaCompletada">Detener Rutina</ion-button>
+    </div>
+    
+    <!-- Mensaje cuando la rutina está completa -->
+    <div *ngIf="!ejercicioActual && rutinaCompletada" class="rutina-completada">
+      <p>¡Rutina completada!</p>
+      <ion-button expand="full" (click)="volverALista()">Volver a la lista de rutinas</ion-button>
+    </div>
+  </div>
+</ion-content>
