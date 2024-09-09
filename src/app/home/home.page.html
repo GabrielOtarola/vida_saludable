@@ -1,13 +1,18 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-menu-button></ion-menu-button>
+    <ion-menu-button slot="start"></ion-menu-button> <!-- Icono de menú en la esquina superior izquierda -->
     <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-menu side="start" contentId="main-content">
+<ion-menu side="start" contentId="main-content" (ionDidOpen)="menuOpen = true" (ionDidClose)="menuOpen = false">
   <ion-header>
     <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="closeMenu()">
+          <ion-icon name="arrow-back"></ion-icon> <!-- Flecha para cerrar el menú -->
+        </ion-button>
+      </ion-buttons>
       <ion-title>Menú</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -18,7 +23,7 @@
           <h2>{{ welcomeMessage }}</h2>
         </ion-label>
       </ion-item>
-      <!-- Añade otros ítems de menú aquí -->
+      <!-- Opciones del menú -->
       <ion-item routerLink="/profile">
         <ion-icon slot="start" name="person"></ion-icon>
         <ion-label>Perfil</ion-label>
