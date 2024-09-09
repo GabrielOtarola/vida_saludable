@@ -8,12 +8,20 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form>
-    <ion-item lines="none" class="input-item">
-      <ion-label position="floating" color="medium">Correo Electrónico</ion-label>
-      <ion-input type="email" required></ion-input>
-    </ion-item>
-    <p>Se enviara un correo para reestablecer su contraseña.</p>
-    <ion-button expand="block" class="recover-button" type="submit">Recuperar Contraseña</ion-button>
+  <form [formGroup]="recoverForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="input-item">
+      <mat-label>Correo Electrónico</mat-label>
+      <input matInput type="email" formControlName="email" required>
+      <mat-error *ngIf="recoverForm.get('email')?.invalid && recoverForm.get('email')?.touched">
+        Introduce un correo válido.
+      </mat-error>
+    </mat-form-field>
+
+    <p>Se enviará un correo para reestablecer su contraseña.</p>
+
+    <ion-button expand="block" class="recover-button" [disabled]="recoverForm.invalid" type="submit">
+      Recuperar Contraseña
+    </ion-button>
+    
   </form>
 </ion-content>

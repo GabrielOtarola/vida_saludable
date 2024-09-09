@@ -1,0 +1,16 @@
+<div class="modal-wrapper">
+  <div class="circle-logo"></div> <!-- Logo circular arriba -->
+
+  <div class="modal-header">
+    <span>Mensaje</span>
+    <ion-button fill="clear" size="small" (click)="dismiss()">Cerrar</ion-button>
+  </div>
+
+  <div class="modal-content">
+    {{ message }}
+  </div>
+
+  <div class="modal-footer">
+    <ion-button class="dismiss-button" (click)="dismiss()">Aceptar</ion-button>
+  </div>
+</div>
