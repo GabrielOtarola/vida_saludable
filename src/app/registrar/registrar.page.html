@@ -9,6 +9,7 @@
 
 <ion-content class="register-content">
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<<<<<<< HEAD
     <ion-item lines="none">
       <ion-input id="username" formControlName="username" type="text" placeholder="Nombre de Usuario"></ion-input>
     </ion-item>
@@ -63,5 +64,87 @@
     <p id="activityLevel-error" class="error-message"></p>
 
     <ion-button id="submitButton" expand="block" type="submit" class="register-button">Registrarse</ion-button>
+=======
+    
+    <!-- Campo de Nombre de Usuario con Angular Material -->
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Nombre de Usuario</mat-label>
+      <input matInput formControlName="username" placeholder="Nombre de Usuario">
+      <mat-error *ngIf="registerForm.get('username')?.errors?.['required']">El nombre de usuario es requerido.</mat-error>
+      <mat-error *ngIf="registerForm.get('username')?.errors?.['pattern']">El nombre de usuario solo debe contener letras.</mat-error>
+    </mat-form-field>
+
+    <!-- Campo de Correo Electrónico con Angular Material -->
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Correo Electrónico</mat-label>
+      <input matInput formControlName="email" type="email" placeholder="Correo Electrónico">
+      <mat-error *ngIf="registerForm.get('email')?.errors?.['required']">El correo electrónico es requerido.</mat-error>
+      <mat-error *ngIf="registerForm.get('email')?.errors?.['email']">Introduce un correo electrónico válido.</mat-error>
+    </mat-form-field>
+
+    <!-- Campo de Contraseña con Angular Material -->
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Contraseña</mat-label>
+      <input matInput formControlName="password" type="password" placeholder="Contraseña">
+      <mat-error *ngIf="registerForm.get('password')?.errors?.['required']">La contraseña es requerida.</mat-error>
+      <mat-error *ngIf="registerForm.get('password')?.errors?.['invalidPassword']">La contraseña debe contener al menos 4 números, 3 letras y 1 mayúscula.</mat-error>
+    </mat-form-field>
+
+    <!-- Campo de Confirmar Contraseña con Angular Material -->
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Confirmar Contraseña</mat-label>
+      <input matInput formControlName="confirmPassword" type="password" placeholder="Confirmar Contraseña">
+      <mat-error *ngIf="registerForm.hasError('mismatch') && (registerForm.get('confirmPassword')?.touched || registerForm.get('confirmPassword')?.dirty)">Las contraseñas no coinciden.</mat-error>
+    </mat-form-field>
+
+    <!-- Campo de Edad con Angular Material -->
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Edad</mat-label>
+      <input matInput formControlName="age" type="number" placeholder="Edad">
+      <mat-error *ngIf="registerForm.get('age')?.errors?.['required']">La edad es requerida.</mat-error>
+      <mat-error *ngIf="registerForm.get('age')?.errors?.['pattern']">La edad debe ser un número.</mat-error>
+    </mat-form-field>
+
+    <!-- Campo de Altura con Angular Material -->
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Altura (cm)</mat-label>
+      <input matInput formControlName="height" type="number" placeholder="Altura (cm)">
+      <mat-error *ngIf="registerForm.get('height')?.errors?.['required']">La altura es requerida.</mat-error>
+      <mat-error *ngIf="registerForm.get('height')?.errors?.['pattern']">La altura debe ser un número.</mat-error>
+    </mat-form-field>
+
+    <!-- Campo de Peso con Angular Material -->
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Peso (kg)</mat-label>
+      <input matInput formControlName="weight" type="number" placeholder="Peso (kg)">
+      <mat-error *ngIf="registerForm.get('weight')?.errors?.['required']">El peso es requerido.</mat-error>
+      <mat-error *ngIf="registerForm.get('weight')?.errors?.['pattern']">El peso debe ser un número.</mat-error>
+    </mat-form-field>
+
+    <!-- Campo de Género con Angular Material -->
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Género</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option value="Masculino">Masculino</mat-option>
+        <mat-option value="Femenino">Femenino</mat-option>
+        <mat-option value="Otro">Otro</mat-option>
+      </mat-select>
+      <mat-error *ngIf="registerForm.get('gender')?.invalid && (registerForm.get('gender')?.touched || registerForm.get('gender')?.dirty)">Selecciona un género.</mat-error>
+    </mat-form-field>
+
+    <!-- Campo de Nivel de Actividad con Angular Material -->
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Nivel de Actividad</mat-label>
+      <mat-select formControlName="activityLevel">
+        <mat-option value="Bajo">Bajo</mat-option>
+        <mat-option value="Moderado">Moderado</mat-option>
+        <mat-option value="Alto">Alto</mat-option>
+      </mat-select>
+      <mat-error *ngIf="registerForm.get('activityLevel')?.invalid && (registerForm.get('activityLevel')?.touched || registerForm.get('activityLevel')?.dirty)">Selecciona el nivel de actividad.</mat-error>
+    </mat-form-field>
+
+    <!-- Botón de registro -->
+    <ion-button expand="block" type="submit" class="register-button">Registrarse</ion-button>
+>>>>>>> Sebastian
   </form>
 </ion-content>

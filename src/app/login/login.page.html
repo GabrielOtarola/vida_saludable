@@ -7,43 +7,46 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="login-content">
+  <!-- Contenedor del logo y título -->
   <div class="logo-container">
     <div class="circle-logo"></div>
     <h1 class="app-title">Nombre de la App</h1>
   </div>
 
+  <!-- Formulario de Login -->
   <div class="login-form">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <ion-item lines="none" class="input-item">
-        <ion-label position="floating" color="medium">Nombre de Usuario</ion-label>
-        <ion-input type="text" formControlName="username" required></ion-input>
-      </ion-item>
+      <!-- Campo de Nombre de Usuario con Angular Material -->
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Nombre de Usuario</mat-label>
+        <input matInput formControlName="username" required>
+        <button *ngIf="loginForm.get('username')?.value" matSuffix mat-icon-button aria-label="Clear" (click)="clearField('username')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-      <ion-item lines="none" class="input-item">
-        <ion-label position="floating" color="medium">Contraseña</ion-label>
-        <ion-input type="password" formControlName="password" required></ion-input>
-      </ion-item>
+      <!-- Campo de Contraseña con validación personalizada -->
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" formControlName="password" required>
+        <button *ngIf="loginForm.get('password')?.value" matSuffix mat-icon-button aria-label="Clear" (click)="clearField('password')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
+      <!-- Botones de Iniciar Sesión y Regístrate -->
       <ion-button expand="block" class="login-button" type="submit">
         Iniciar Sesión
       </ion-button>
 
-      <ion-button expand="block" fill="outline" class="signup-button" routerLink="/registrar">Regístrate</ion-button>
+      <ion-button expand="block" fill="outline" class="signup-button" routerLink="/registrar">
+        Regístrate
+      </ion-button>
 
       <!-- Enlace a la página de recuperar contraseña -->
       <ion-router-link routerLink="/recuperar-contrasena" class="forgot-password-link">
         ¿Olvidaste tu contraseña?
       </ion-router-link>
     </form>
-  </div>
-
-  <div class="social-login">
-    <p>O conéctate usando</p>
-    <div class="social-icons">
-      <ion-button expand="block" class="google-login-button">
-        <img src="assets/icon/google-icon.png" alt="Google" class="google-icon">
-        Iniciar sesión con Google
-      </ion-button>
-    </div>
   </div>
 </ion-content>

@@ -23,9 +23,15 @@ const routes: Routes = [
     loadChildren: () => import('./registrar/registrar.module').then(m => m.RegistrarPageModule)
   },
   {
+<<<<<<< HEAD
     path: 'rutina-ejercicios',
     loadChildren: () => import('./rutina-ejercicios/rutina-ejercicios.module').then(m => m.RutinaEjerciciosPageModule)
+=======
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+>>>>>>> Sebastian
   }
+
 ];
 
 @NgModule({
